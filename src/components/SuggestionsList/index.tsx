@@ -5,7 +5,7 @@ interface Props {
     userInput: string;
     filteredSuggestions: any[];
     activeSuggestion: number;
-    onClick: () => void;
+    onClick: any;
 }
 
 const SuggestionsList = ({showSuggestions, userInput, filteredSuggestions, activeSuggestion, onClick}: Props) => {
@@ -15,31 +15,32 @@ const SuggestionsList = ({showSuggestions, userInput, filteredSuggestions, activ
         if (filteredSuggestions.length) {
             suggestionsListComponent = (
                 // @ts-ignore
-                <ul class="suggestions">
-                    {filteredSuggestions.map((suggestion, index) => {
-                        let className;
+                <div className="suggestions">
+                    <ul>
+                        {filteredSuggestions.map((suggestion, index) => {
+                            let className;
 
-                        // Flag the active suggestion with a class
-                        if (index === activeSuggestion) {
-                            className = "suggestion-active";
-                        }
+                            // Flag the active suggestion with a class
+                            if (index === activeSuggestion) {
+                                className = "suggestion-active";
+                            }
 
-                        return (
-                            <li
-                                className={className}
-                                key={suggestion.id}
-                                onClick={onClick}
-                            >
-                                {suggestion.name}
-                            </li>
-                        );
-                    })}
-                </ul>
+                            return (
+                                <li
+                                    key={suggestion.id}
+                                    onClick={onClick}
+                                >
+                                    {suggestion.name}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             );
         } else {
             suggestionsListComponent = (
                 // @ts-ignore
-                <div class="no-suggestions">
+                <div className="no-suggestions">
                     <em>Нет поисковых подсказок</em>
                 </div>
             );

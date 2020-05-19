@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Autocomplete from "./components/Autocomplete";
 import {useSelector} from "react-redux";
@@ -6,19 +6,22 @@ import {useSelector} from "react-redux";
 function App() {
   const {suggestions} = useSelector((state: any) => state.suggestionsReducer) || [];
 
-  console.log(suggestions);
+  const [suggestionsState, setSuggestionsState] = useState([]);
 
-  const newSuggestions = suggestions.map((suggestion: any) => ({
-    id: suggestion.id,
-    name: suggestion.name,
-  }));
-
-  console.log(newSuggestions);
+  useEffect(() => {
+      if (suggestions) {
+          const newSuggestions = suggestions.map((suggestion: any) => ({
+              id: suggestion.id,
+              name: suggestion.name,
+          }));
+          setSuggestionsState(newSuggestions);
+      }
+  }, [suggestions]);
 
   return (
       <div className="App">
         <header className="App-header">
-          <Autocomplete suggestions={newSuggestions}
+          <Autocomplete suggestions={suggestionsState}
           />
         </header>
       </div>
