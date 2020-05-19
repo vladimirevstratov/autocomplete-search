@@ -26,10 +26,13 @@ export const suggestionsSlice = createSlice({
 
 export const { setSuggestions } = suggestionsSlice.actions;
 
-export const getSuggestions = (): AppThunk => dispatch => {
+export const getSuggestions = (callback: any): AppThunk => dispatch => {
     fetch('https://api.savetime.net/v1/client/suggest/item?q=молоко&brandId=24&shopId=1187')
         .then((suggestions: any) => suggestions.json())
-        .then((suggestionsJson: any) => dispatch(setSuggestions(suggestionsJson)))
+        .then((suggestionsJson: any) => {
+            dispatch(setSuggestions(suggestionsJson));
+            callback();
+        })
         .catch(err => console.log('error in fetch: ', err));
 };
 

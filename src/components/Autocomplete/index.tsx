@@ -6,9 +6,10 @@ import {AiOutlineSearch, AiOutlineCloseCircle} from 'react-icons/ai';
 
 interface Props {
     suggestions: any;
+    updateSuggestions: any;
 }
 
-const Autocomplete = ({suggestions}: Props) => {
+const Autocomplete = ({suggestions, updateSuggestions}: Props) => {
     const [activeSuggestion, setActiveSuggestion] = useState(0);
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -17,7 +18,9 @@ const Autocomplete = ({suggestions}: Props) => {
     const dispatch = useDispatch();
 
     const onChange = (e: any) => {
-        dispatch(getSuggestions());
+        dispatch(getSuggestions(() => {
+            updateSuggestions();
+        }));
 
         setUserInput(e.currentTarget.value);
     };
@@ -40,13 +43,15 @@ const Autocomplete = ({suggestions}: Props) => {
     };
 
     useEffect(() => {
-        const filteredSuggestions = suggestions.filter(
-            (suggestion: any) =>
-                suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        );
-        setActiveSuggestion(0);
-        setFilteredSuggestions(filteredSuggestions);
-        setShowSuggestions(true)
+        if (suggestions) {
+            const filteredSuggestions = suggestions.filter(
+                (suggestion: any) =>
+                    suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+            );
+            setActiveSuggestion(0);
+            setFilteredSuggestions(filteredSuggestions);
+            setShowSuggestions(true);
+        }
     /* eslint-disable-next-line */
     }, [suggestions]);
 
