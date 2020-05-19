@@ -14,13 +14,11 @@ const SuggestionsList = ({showSuggestions, userInput, filteredSuggestions, activ
     if (showSuggestions && userInput) {
         if (filteredSuggestions.length) {
             suggestionsListComponent = (
-                // @ts-ignore
                 <div className="suggestions">
                     <ul>
                         {filteredSuggestions.map((suggestion, index) => {
                             let className;
 
-                            // Flag the active suggestion with a class
                             if (index === activeSuggestion) {
                                 className = "suggestion-active";
                             }
@@ -39,7 +37,6 @@ const SuggestionsList = ({showSuggestions, userInput, filteredSuggestions, activ
             );
         } else {
             suggestionsListComponent = (
-                // @ts-ignore
                 <div className="no-suggestions">
                     <em>Нет поисковых подсказок</em>
                 </div>

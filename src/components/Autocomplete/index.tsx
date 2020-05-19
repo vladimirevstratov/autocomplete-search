@@ -25,10 +25,8 @@ const Autocomplete = ({suggestions, updateSuggestions}: Props) => {
         setUserInput(e.currentTarget.value);
     };
 
-    // Event fired when the user clicks on a suggestion
     const onClick = (e: any) => {
         console.log('e', e);
-        // Update the user input and reset the rest of the state
         setActiveSuggestion(0);
         setFilteredSuggestions([]);
         setShowSuggestions(false);
