@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SuggestionsList from '../SuggestionsList';
 import {useDispatch} from 'react-redux';
 import {getSuggestions} from '../../redux/suggestionsSlice';
+import {AiOutlineSearch, AiOutlineCloseCircle} from 'react-icons/ai';
 
 interface Props {
     suggestions: any;
@@ -31,6 +32,13 @@ const Autocomplete = ({suggestions}: Props) => {
         setUserInput(e.currentTarget.innerText);
     };
 
+    const onClear = () => {
+        setActiveSuggestion(0);
+        setFilteredSuggestions([]);
+        setShowSuggestions(false);
+        setUserInput('');
+    };
+
     useEffect(() => {
         const filteredSuggestions = suggestions.filter(
             (suggestion: any) =>
@@ -43,14 +51,18 @@ const Autocomplete = ({suggestions}: Props) => {
     }, [suggestions]);
 
     return (
-          <div className="autocomplete">
-              <input
-                  type="text"
-                  onChange={onChange}
-                  value={userInput}
-                  placeholder={'Поиск по магазину'}
-                  required pattern="\S+.*"
-              />
+        <div>
+              <div className={userInput ? "input-row input-row-border" : "input-row"}>
+                  <AiOutlineSearch size='1em' color='#7a7a7a' />
+                  <input
+                      type="text"
+                      onChange={onChange}
+                      value={userInput}
+                      placeholder={'Поиск по магазину'}
+                      required pattern="\S+.*"
+                  />
+                  <button onClick={onClear}><AiOutlineCloseCircle size='1.6em' color='#7a7a7a' /></button>
+              </div>
               <SuggestionsList
                   showSuggestions={showSuggestions}
                   userInput={userInput}

@@ -12,31 +12,46 @@
   font-size: calc(10px + 2vmin);
 }
 
-.autocomplete {
-  padding: 20px;
-}
-
-.autocomplete input {
+.input-row {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #6B6B6B;
-  padding: 10px 15px 10px 15px;
-  width: 300px;
   border-radius: 5px;
-  font-size: 16px;
+  padding: 10px 5px 10px 15px;
+  width: 300px;
   background-color: #FAFAFA;
 }
 
-.autocomplete input:focus {
-  outline: none;
-  background-color: #FFFFFF;
-}
-
-.autocomplete input:valid {
+.input-row-border {
   border: 1px solid #286BEC;
   background-color: #FFFFFF;
 }
 
-.autocomplete input:invalid {
-  border: 1px solid #6B6B6B;
+.input-row input {
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 0;
+  font-size: 16px;
+  width: 270px;
+  background-color: transparent;
+}
+
+.input-row button {
+  display: flex;
+  justify-content: center;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+
+.input-row input:focus {
+  outline: none;
 }
 
 .no-suggestions {
@@ -52,7 +67,7 @@
   overflow-y: auto;
   padding-left: 0;
   background-color: #FFFFFF;
-  width: 330px;
+  width: 320px;
   color: #7a7a7a;
   padding-bottom: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
