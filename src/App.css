@@ -1,39 +1,70 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+  font-family: sans-serif;
 }
 
 .App-header {
+  background-color: #FFFFFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.autocomplete {
+  padding: 20px;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px)
-  }
-  100% {
-    transform: translateY(0px)
-  }
+.autocomplete input {
+  border: 1px solid #6B6B6B;
+  padding: 10px 15px 10px 15px;
+  width: 300px;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #FAFAFA;
+}
+
+.autocomplete input:focus {
+  outline: none;
+  background-color: #FFFFFF;
+}
+
+.autocomplete input:valid {
+  border: 1px solid #286BEC;
+  background-color: #FFFFFF;
+}
+
+.autocomplete input:invalid {
+  border: 1px solid #6B6B6B;
+}
+
+.no-suggestions {
+  color: #999999;
+  padding: 10px;
+}
+
+.suggestions {
+  border-radius: 5px;
+  list-style: none;
+  margin-top: 5px;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  background-color: #FFFFFF;
+  width: 330px;
+  color: #7a7a7a;
+  padding-bottom: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-size: 16px;
+}
+
+.suggestions li {
+  padding: 15px 15px 5px 15px;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  color: #1F1F1F;
+  cursor: pointer;
 }
