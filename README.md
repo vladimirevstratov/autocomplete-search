@@ -1,4 +1,4 @@
-## Autocomplete search form
+## Autocomplete search form (React)
 
 For running app:
 
